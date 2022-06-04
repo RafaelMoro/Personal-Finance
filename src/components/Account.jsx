@@ -1,8 +1,12 @@
 import React from 'react'
 
-const Account = () => {
+const Account = ({ account }) => {
   return (
-    <p>Account</p>
+    <section>
+      <h4>{ account.name }</h4>
+      <p>{account.type}</p>
+      <p>${account.initialAmount}</p>
+    </section>
   )
 }
 

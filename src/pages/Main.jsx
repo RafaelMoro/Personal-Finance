@@ -33,12 +33,12 @@ const Main = () => {
     <main>
       <Accounts>
         {
-          accounts.map((account, index) => ( <Account key={index} /> ))
+          accounts.map((account, index) => ( <Account key={index} account={account} /> ))
         }
       </Accounts>
       <Records>
         {
-          records.map((record, index) => ( <Record key={index} /> ))
+          records.map((record, index) => ( <Record key={index} record={record} /> ))
         }
       </Records>
     </main>

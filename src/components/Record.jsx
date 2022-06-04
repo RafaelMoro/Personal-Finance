@@ -1,8 +1,12 @@
 import React from 'react'
 
-const Record = () => {
+const Record = ({ record }) => {
   return (
-    <p>Record</p>
+    <section>
+      <h5>{record.shortName}</h5>
+      <p>{record.description}</p>
+      <p>{record.amount}</p>
+    </section>
   )
 }
 
