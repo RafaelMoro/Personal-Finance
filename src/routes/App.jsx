@@ -6,14 +6,14 @@ import '@styles/globals.scss'
 
 const App = () => {
   return (
-    <div>
+    <>
       <BrowserRouter>
         <Header />
         <Routes>
           <Route exact path="/" element={<Main />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   )
 }
 

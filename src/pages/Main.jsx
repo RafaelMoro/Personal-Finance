@@ -1,10 +1,15 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { createAccounts } from '../redux/slices/accounts.slice'
 import { Accounts } from '@containers/Accounts'
 import { Records } from '@containers/Records'
 import { Account } from '@components/Account'
 import { Record } from '@components/Record'
 
 const Main = () => {
+  const dispatch = useDispatch()
+  const accountsState = useSelector(state => state.accounts.accounts)
+  console.log(accountsState)
   const accounts = [
     {
       name: "BBVA Bancomer",
@@ -29,6 +34,13 @@ const Main = () => {
       amount: 65
     }
   ]
+
+  const clickHandler = () => {
+    dispatch(createAccounts({
+      name: 'New Account',
+      initialValue: 2500
+    }))
+  }
   return (
     <main>
       <Accounts>
@@ -41,6 +53,8 @@ const Main = () => {
           records.map((record, index) => ( <Record key={index} record={record} /> ))
         }
       </Records>
+      <button onClick={ clickHandler }>Añadir cuenta</button>
+      
     </main>
   )
 }
