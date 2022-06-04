@@ -5,7 +5,7 @@ import { Account } from '@components/Account'
 import { Record } from '@components/Record'
 
 const Main = () => {
-  const accounts: object[] = [
+  const accounts = [
     {
       name: "BBVA Bancomer",
       type: "Debit",
@@ -17,7 +17,7 @@ const Main = () => {
       intialAmount: 2500
     }
   ]
-  const records: object[] = [
+  const records = [
     {
       shortName: "Oxxo six cervezas",
       description: "Un six de chelas",
