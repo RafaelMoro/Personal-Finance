@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { FC, ReactNode } from 'react'
 
-const Records = () => {
+interface Props {
+  children: ReactNode
+}
+
+const Records: FC<Props> = ({ children }) => {
   return (
-    <p>Records</p>
+    <div>
+      { children }
+    </div>
   )
 }
 
-export default Records
+export {Records}

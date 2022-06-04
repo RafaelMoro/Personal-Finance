@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { FC, ReactNode } from 'react'
 
-const Accounts = () => {
+interface Props {
+  children: ReactNode
+}
+
+const Accounts: FC<Props> = ({ children }) => {
   return (
-    <p>Accounts</p>
+    <div>
+      { children }
+    </div>
   )
 }
 
