@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Header } from '@pages/Header'
 import { Main } from '@pages/Main'
-import '@styles/globals.scss'
+import '@styles/main.scss'
 
 const App = () => {
   return (

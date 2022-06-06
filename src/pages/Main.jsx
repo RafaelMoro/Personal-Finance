@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { createAccounts } from '../redux/slices/accounts.slice'
+import Container from '@mui/material/Container';
 import { Accounts } from '@containers/Accounts'
 import { Records } from '@containers/Records'
 import { Account } from '@components/Account'
@@ -9,7 +10,6 @@ import { Record } from '@components/Record'
 const Main = () => {
   const dispatch = useDispatch()
   const accountsState = useSelector(state => state.accounts.accounts)
-  console.log(accountsState)
   const accounts = [
     {
       name: "BBVA Bancomer",
@@ -19,7 +19,7 @@ const Main = () => {
     {
       name: "Sodexo",
       type: "Food Voucher",
-      intialAmount: 2500
+      initialAmount: 2500
     }
   ]
   const records = [
@@ -42,7 +42,7 @@ const Main = () => {
     }))
   }
   return (
-    <main>
+    <Container maxWidth="md" sc={{ bgcolor: '#f5f5f5' }}>
       <Accounts>
         {
           accounts.map((account, index) => ( <Account key={index} account={account} /> ))
@@ -55,7 +55,7 @@ const Main = () => {
       </Records>
       <button onClick={ clickHandler }>Añadir cuenta</button>
       
-    </main>
+    </Container>
   )
 }
 

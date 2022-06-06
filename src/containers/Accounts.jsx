@@ -1,10 +1,11 @@
 import React from 'react'
+import Grid from '@mui/material/Grid'
 
 const Accounts = ({ children }) => {
   return (
-    <div>
+    <Grid container spacing={2}>
       { children }
-    </div>
+    </Grid >
   )
 }
 

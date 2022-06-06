@@ -1,12 +1,17 @@
 import React from 'react'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
 
 const Record = ({ record }) => {
   return (
-    <section>
-      <h5>{record.shortName}</h5>
-      <p>{record.description}</p>
-      <p>{record.amount}</p>
-    </section>
+    <Grid item xs={12}>
+      <Paper elevation={2} sx={{ p: 2 }}>
+        <Typography variant="subtitle1">{record.shortName}</Typography>
+        <Typography color="text.secondary">{record.description}</Typography>
+        <Typography>{record.amount}</Typography>
+      </Paper>
+    </Grid>
   )
 }
 

@@ -1,12 +1,22 @@
 import React from 'react'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Grid'
+import '@styles/components/accounts.scss'
 
 const Account = ({ account }) => {
   return (
-    <section>
-      <h4>{ account.name }</h4>
-      <p>{account.type}</p>
-      <p>${account.initialAmount}</p>
-    </section>
+    <>
+      <Grid item xs={4}>
+        <Paper elevation={3} sx={{ p: 2, mb: 10, mt: 5 }}>
+            <Typography variant="h5" component="h4" >{account.name}</Typography>
+            <div className='card__description'>
+              <Typography color="text.secondary" >{account.type}</Typography>
+              <Typography>${account.initialAmount}</Typography>
+            </div>
+        </Paper>
+      </Grid>
+    </>
   )
 }
 
