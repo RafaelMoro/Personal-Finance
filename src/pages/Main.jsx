@@ -14,7 +14,7 @@ const Main = () => {
     {
       name: "BBVA Bancomer",
       type: "Debit",
-      initialAmount: 2000
+      initialAmount: 2030.16
     },
     {
       name: "Sodexo",

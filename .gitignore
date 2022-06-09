@@ -94,6 +94,7 @@ build/Release
 node_modules/
 jspm_packages/
 package-lock.json
+test/
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
