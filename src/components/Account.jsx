@@ -1,11 +1,8 @@
 import React from 'react'
-import Paper from '@mui/material/Paper'
-import Typography from '@mui/material/Typography'
-import Grid from '@mui/material/Grid'
+import { Paper, Typography, Grid } from '@mui/material'
 
 import { formatNumberToCurrency } from '../utils/formatNumberToCurrency'
 import '@styles/components/accounts.scss'
-import { SignalCellularNullOutlined } from '@mui/icons-material'
 
 const Account = ({ account }) => {
   const [initialAmountFormated, setInitialAmountFormated] = React.useState(null)

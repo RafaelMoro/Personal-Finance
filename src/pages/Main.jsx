@@ -1,11 +1,12 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { createAccounts } from '../redux/slices/accounts.slice'
-import Container from '@mui/material/Container';
+import { Container } from '@mui/material'
 import { Accounts } from '@containers/Accounts'
 import { Records } from '@containers/Records'
 import { Account } from '@components/Account'
 import { Record } from '@components/Record'
+import { CreateAccount } from '@components/CreateAccount'
 
 const Main = () => {
   const dispatch = useDispatch()
@@ -47,6 +48,7 @@ const Main = () => {
         {
           accounts.map((account, index) => ( <Account key={index} account={account} /> ))
         }
+        <CreateAccount />
       </Accounts>
       <Records>
         {
