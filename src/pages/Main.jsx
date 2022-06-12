@@ -16,24 +16,11 @@ import { CreateAccountModal } from '@components/CreateAccountModal'
 const Main = () => {
   const [ createAccountModal, setCreateAccountModal ] = React.useState(false)
   const LOCAL_STORAGE = process.env.LOCAL_STORAGE
-  useLocalStorage(LOCAL_STORAGE)
+  const saveItem = useLocalStorage(LOCAL_STORAGE)
 
   const dispatch = useDispatch()
-  const accountsState = useSelector(state => state.accounts.accounts)
-  
+  const accountsState = useSelector(state => state.accountsModule.accounts)
 
-  const accounts = [
-    {
-      name: "BBVA Bancomer",
-      type: "Debit",
-      initialAmount: 2030.16
-    },
-    {
-      name: "Sodexo",
-      type: "Food Voucher",
-      initialAmount: 2500
-    }
-  ]
   const records = [
     {
       shortName: "Oxxo six cervezas",
@@ -61,7 +48,7 @@ const Main = () => {
     <Container maxWidth="md" sc={{ bgcolor: '#f5f5f5' }}>
       <Accounts>
         {
-          accounts.map((account, index) => ( <Account key={index} account={account} /> ))
+          (accountsState.length > 0) ? accountsState.map((account, index) => ( <Account key={index} account={account} /> )) : <p>No hay cuentas</p>
         }
         <CreateAccountButton launchModal={createAccountClickHandler} />
       </Accounts>
@@ -72,7 +59,7 @@ const Main = () => {
       </Records>
       <button onClick={ clickHandler }>Añadir cuenta</button>
     </Container>
-    { createAccountModal && <CreateAccountModal open={createAccountModal} close={createAccountClickHandler} /> }
+    { createAccountModal && <CreateAccountModal open={createAccountModal} close={createAccountClickHandler} saveItem={saveItem} /> }
     </>
   )
 }

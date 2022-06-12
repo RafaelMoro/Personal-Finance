@@ -14,7 +14,8 @@ export const accountsSlice = createSlice({
       state.accounts = [ ...state.accounts, action.payload]
     },
     fetchAccounts: (state, action) => {
-      state.accounts = [...state.accounts, action.payload]
+      //Since the payload is already an array, it will be passed directly to accounts
+      state.accounts =  action.payload
     }
   }
 })

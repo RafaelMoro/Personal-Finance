@@ -14,7 +14,7 @@ const Account = ({ account }) => {
   return (
     <>
       <Grid item xs={4}>
-        <Paper elevation={3} sx={{ p: 2, mb: 10, mt: 5 }}>
+        <Paper elevation={2} sx={{ p: 2 }}>
             <Typography variant="h5" component="h4" >{account.name}</Typography>
             <div className='card__description'>
               <Typography color="text.secondary" >{account.type}</Typography>
