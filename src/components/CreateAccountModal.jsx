@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Box, TextField, Button, Typography, Select, MenuItem } from '@mui/material'
+import { Modal, Box, TextField, Button, Typography, Select, MenuItem, InputLabel, FormControl  } from '@mui/material'
 
 const boxStyle = {
   position: 'absolute',
@@ -16,25 +16,41 @@ const boxStyle = {
 }
 
 const CreateAccountModal = ({ open, close }) => {
+  const [typeAccount, setTypeAccount] = React.useState('')
+  const [color, setColor] = React.useState('')
+
+  const handleChangeTypeAccount = (event) => {
+    setTypeAccount(event.target.value)
+  }
+  const handleChangeColor = (event) => {
+    setColor(event.target.value)
+  }
+
   return (
     <Modal open={open} onClose={close}>
       <Box sx={boxStyle}>
         <Typography variant="h5" component="p" >Create Account </Typography>
         <TextField variant="outlined" label="Account name" />
-        <Select label="Type of account">
-          <MenuItem value="Debit">Debit</MenuItem>
-          <MenuItem value="Credit">Credit</MenuItem>
-          <MenuItem value="Food_Voucher">Food Voucher</MenuItem>
-          <MenuItem value="Savings">Savings</MenuItem>
-        </Select>
+        <FormControl>
+          <InputLabel id="typeAccount">Type of Account</InputLabel>
+          <Select id="typeAccount" value={typeAccount} label="Type of account" onChange={handleChangeTypeAccount} >
+            <MenuItem value="Debit">Debit</MenuItem>
+            <MenuItem value="Credit">Credit</MenuItem>
+            <MenuItem value="Food_Voucher">Food Voucher</MenuItem>
+            <MenuItem value="Savings">Savings</MenuItem>
+          </Select>
+        </FormControl>
         <TextField variant="outlined" label="Initial Amount" />
-        <Select label="Color">
-          <MenuItem value="Red">Red</MenuItem>
-          <MenuItem value="Blue">Blue</MenuItem>
-          <MenuItem value="Black">Black</MenuItem>
-          <MenuItem value="White">White</MenuItem>
-        </Select>
-        <Button> Create </Button>
+        <FormControl>
+          <InputLabel id="color">Color</InputLabel>
+          <Select labelId="label-color" id="color" value={color} label="Color" onChange={handleChangeColor} >
+            <MenuItem value="Red">Red</MenuItem>
+            <MenuItem value="Blue">Blue</MenuItem>
+            <MenuItem value="Black">Black</MenuItem>
+            <MenuItem value="White">White</MenuItem>
+          </Select>
+        </FormControl>
+        <Button variant="contained"> Create </Button>
       </Box>
     </Modal>
   )
