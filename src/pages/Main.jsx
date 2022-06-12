@@ -8,14 +8,20 @@ import { Accounts } from '@containers/Accounts'
 import { Records } from '@containers/Records'
 import { Account } from '@components/Account'
 import { Record } from '@components/Record'
+import { useLocalStorage } from '@utils/useLocalStorage'
+
 import { CreateAccountButton } from '@components/CreateAccountButton'
 import { CreateAccountModal } from '@components/CreateAccountModal'
 
 const Main = () => {
   const [ createAccountModal, setCreateAccountModal ] = React.useState(false)
+  const LOCAL_STORAGE = process.env.LOCAL_STORAGE
+  useLocalStorage(LOCAL_STORAGE)
 
   const dispatch = useDispatch()
   const accountsState = useSelector(state => state.accounts.accounts)
+  
+
   const accounts = [
     {
       name: "BBVA Bancomer",

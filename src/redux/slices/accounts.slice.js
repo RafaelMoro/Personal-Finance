@@ -12,11 +12,14 @@ export const accountsSlice = createSlice({
     // and produces a brand new inmutable state based off those changes
     createAccounts: (state, action) => {
       state.accounts = [ ...state.accounts, action.payload]
+    },
+    fetchAccounts: (state, action) => {
+      state.accounts = [...state.accounts, action.payload]
     }
   }
 })
 
 // Action creators are generated for each case reducer function
-export const { createAccounts } = accountsSlice.actions
+export const { createAccounts, fetchAccounts } = accountsSlice.actions
 
 export default accountsSlice.reducer
