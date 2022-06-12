@@ -19,7 +19,7 @@ const boxStyle = {
   gap: 4
 }
 
-const CreateAccountModal = ({ open, close, saveItem }) => {
+const AccountModal = ({ accountModal, close, saveItem }) => {
   const accounts = useSelector(state => state.accountsModule.accounts)
   const [newAccount, setNewAccount] = React.useState({
     name: '',
@@ -28,6 +28,7 @@ const CreateAccountModal = ({ open, close, saveItem }) => {
     color: ''
   })
   const dispatch = useDispatch()
+  console.log(accountModal)
 
   const handleCreateAccount = () => {
     const state = {
@@ -38,13 +39,13 @@ const CreateAccountModal = ({ open, close, saveItem }) => {
     dispatch(createAccounts(newAccount))
     // Temporary until I add a middleware to update localStorage after updating reducer and state
     saveItem(state)
-    close()
+    close('')
   }
 
   return (
-    <Modal open={open} onClose={close}>
+    <Modal open={accountModal.modal} onClose={() => close('')}>
       <Box sx={boxStyle}>
-        <Typography variant="h5" component="p" >Create Account </Typography>
+        <Typography variant="h5" component="p" >{accountModal.type} Account </Typography>
         <TextField onChange={(event) => setNewAccount({...newAccount, name: event.target.value})} variant="outlined" label="Account name" />
         <FormControl>
           <InputLabel id="typeAccount">Type of Account</InputLabel>
@@ -65,10 +66,10 @@ const CreateAccountModal = ({ open, close, saveItem }) => {
             <MenuItem value="White">White</MenuItem>
           </Select>
         </FormControl>
-        <Button variant="contained" onClick={handleCreateAccount}> Create </Button>
+        <Button variant="contained" onClick={handleCreateAccount}> {accountModal.type} </Button>
       </Box>
     </Modal>
   )
 }
 
-export {CreateAccountModal}
+export {AccountModal}

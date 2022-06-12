@@ -6,7 +6,7 @@ import EditIcon from '@mui/icons-material/EditOutlined';
 import { formatNumberToCurrency } from '../utils/formatNumberToCurrency'
 import '@styles/components/accounts.scss'
 
-const Account = ({ account }) => {
+const Account = ({ account, launchModal }) => {
   const [initialAmountFormated, setInitialAmountFormated] = React.useState(null)
   
   React.useEffect(() => {
@@ -19,18 +19,17 @@ const Account = ({ account }) => {
         <Paper elevation={2} sx={{ p: 2 }}>
           <div className='card__title-buttons'>
             <Typography variant="h5" component="h4" >{account.name}</Typography>
-            <IconButton aria-label="edit">
+            <IconButton aria-label="edit" onClick={() => launchModal('Edit')}>
               <EditIcon />
             </IconButton>
             <IconButton aria-label="delete">
               <DeleteIcon sx={{ color: 'red' }} />
             </IconButton>
           </div>
-            
-            <div className='card__description'>
-              <Typography color="text.secondary" >{account.type}</Typography>
-              <Typography>$ {initialAmountFormated}</Typography>
-            </div>
+          <div className='card__description'>
+            <Typography color="text.secondary" >{account.type}</Typography>
+            <Typography>$ {initialAmountFormated}</Typography>
+          </div>
         </Paper>
       </Grid>
     </>
