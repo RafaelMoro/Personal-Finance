@@ -1,14 +1,19 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { createAccounts } from '../redux/slices/accounts.slice'
+
 import { Container } from '@mui/material'
+
 import { Accounts } from '@containers/Accounts'
 import { Records } from '@containers/Records'
 import { Account } from '@components/Account'
 import { Record } from '@components/Record'
-import { CreateAccount } from '@components/CreateAccount'
+import { CreateAccountButton } from '@components/CreateAccountButton'
+import { CreateAccountModal } from '@components/CreateAccountModal'
 
 const Main = () => {
+  const [ createAccountModal, setCreateAccountModal ] = React.useState(false)
+
   const dispatch = useDispatch()
   const accountsState = useSelector(state => state.accounts.accounts)
   const accounts = [
@@ -42,13 +47,17 @@ const Main = () => {
       initialValue: 2500
     }))
   }
+  const createAccountClickHandler = () => {
+    setCreateAccountModal(!createAccountModal)
+  }
   return (
+    <>
     <Container maxWidth="md" sc={{ bgcolor: '#f5f5f5' }}>
       <Accounts>
         {
           accounts.map((account, index) => ( <Account key={index} account={account} /> ))
         }
-        <CreateAccount />
+        <CreateAccountButton launchModal={createAccountClickHandler} />
       </Accounts>
       <Records>
         {
@@ -56,8 +65,9 @@ const Main = () => {
         }
       </Records>
       <button onClick={ clickHandler }>Añadir cuenta</button>
-      
     </Container>
+    { createAccountModal && <CreateAccountModal open={createAccountModal} close={createAccountClickHandler} /> }
+    </>
   )
 }
 
