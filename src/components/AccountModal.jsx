@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Modal, Box, TextField, Button, Typography, Select, MenuItem, InputLabel, FormControl  } from '@mui/material'
+import { Modal, Box, TextField, Button, Typography, FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 
 import { createAccounts } from '../redux/slices/accounts.slice'
+import { SelectInput } from '@components/SelectInput'
 
 const boxStyle = {
   position: 'absolute',
@@ -19,12 +20,12 @@ const boxStyle = {
   gap: 4
 }
 
+const TYPE_ACCOUNT_OPTIONS = ['Debit', 'Credit', 'Food Voucher', 'Savings']
+const COLOR_OPTIONS = ['Red', 'White', 'Blue', 'Black', 'Grey']
+
 const AccountModal = ({ accountModal, close, saveItem }) => {
   const dispatch = useDispatch()
   const accounts = useSelector(state => state.accountsModule.accounts)
-
-  const [type, setType] = useState('')
-  const [color, setColor] = useState('')
   console.log('re-rendering')
 
   const handleSubmit = (event) => {
@@ -32,9 +33,9 @@ const AccountModal = ({ accountModal, close, saveItem }) => {
     const formData = new FormData(event.currentTarget)
     const accountData = {
       name: formData.get('accountName'),
-      type: type,
+      type: formData.get('type'),
       initialAmount: Number(formData.get('initialAmount')),
-      color: color
+      color: formData.get('color')
     }
     const state = {
       accountsModule: {
@@ -51,26 +52,11 @@ const AccountModal = ({ accountModal, close, saveItem }) => {
     <Modal open={accountModal.modal} onClose={() => close('')}>
       <Box sx={boxStyle} component="form" onSubmit={handleSubmit}>
         <Typography variant="h5" component="p" >{accountModal.type} Account </Typography>
+
         <TextField name="accountName" variant="outlined" label="Account name" />
-        <FormControl>
-          <InputLabel id="typeAccount">Type of Account</InputLabel>
-          <Select id="typeAccount" value={type} label="Type of account" name="accountType" onChange={(event) => setType(event.target.value)} >
-            <MenuItem value="Debit">Debit</MenuItem>
-            <MenuItem value="Credit">Credit</MenuItem>
-            <MenuItem value="Food Voucher">Food Voucher</MenuItem>
-            <MenuItem value="Savings">Savings</MenuItem>
-          </Select>
-        </FormControl>
+        <SelectInput name="type" id="typeAccount" labelName="Type of Account" options={TYPE_ACCOUNT_OPTIONS} />
         <TextField name="initialAmount" variant="outlined" label="Initial Amount" />
-        <FormControl>
-          <InputLabel id="color">Color</InputLabel>
-          <Select labelId="label-color" id="color" value={color} label="Color" name="color" onChange={(event) => setColor(event.target.value)} >
-            <MenuItem value="Red">Red</MenuItem>
-            <MenuItem value="Blue">Blue</MenuItem>
-            <MenuItem value="Black">Black</MenuItem>
-            <MenuItem value="White">White</MenuItem>
-          </Select>
-        </FormControl>
+        <SelectInput name="color" id="color" labelName="Color" options={COLOR_OPTIONS} />
         <Button variant="contained" type='submit'> {accountModal.type} </Button>
       </Box>
     </Modal>
