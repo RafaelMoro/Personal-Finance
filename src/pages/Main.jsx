@@ -7,7 +7,7 @@ import { Accounts } from '@containers/Accounts'
 import { Records } from '@containers/Records'
 import { Account } from '@components/Account'
 import { Record } from '@components/Record'
-import { useLocalStorage } from '@utils/useLocalStorage'
+import { useLocalStorage } from '@hooks/useLocalStorage'
 
 import { CreateAccountButton } from '@components/CreateAccountButton'
 import { AccountModal } from '@containers/AccountModal'
@@ -18,7 +18,7 @@ const Main = () => {
     modal: false
   })
   const LOCAL_STORAGE = process.env.LOCAL_STORAGE
-  const saveItem = useLocalStorage(LOCAL_STORAGE)
+  useLocalStorage(LOCAL_STORAGE)
 
   const accountsState = useSelector(state => state.accountsModule.accounts)
 

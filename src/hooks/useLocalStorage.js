@@ -19,19 +19,9 @@ const useLocalStorage = (localStorageName) => {
         const accounts = parsedItem.accountsModule.accounts
         dispatch(fetchAccounts(accounts))
       }
-      
     }
   }, [])
-
-  const saveItem = (newItem) => {
-    try{
-      const stringifiedItem = JSON.stringify(newItem)
-      localStorage.setItem(localStorageName, stringifiedItem)
-    }catch(error) {
-      console.error('error saving local storage',error)
-    }
-  }
-  return saveItem
+  
 }
 
 export {useLocalStorage}

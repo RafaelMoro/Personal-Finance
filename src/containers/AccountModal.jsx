@@ -23,7 +23,7 @@ const boxStyle = {
 const TYPE_ACCOUNT_OPTIONS = ['Debit', 'Credit', 'Food Voucher', 'Savings']
 const COLOR_OPTIONS = ['Red', 'White', 'Blue', 'Black', 'Grey']
 
-const AccountModal = ({ accountModal, close, saveItem }) => {
+const AccountModal = ({ accountModal, close }) => {
   const dispatch = useDispatch()
   const accounts = useSelector(state => state.accountsModule.accounts)
 
@@ -36,14 +36,7 @@ const AccountModal = ({ accountModal, close, saveItem }) => {
       initialAmount: Number(formData.get('initialAmount')),
       color: formData.get('color')
     }
-    const state = {
-      accountsModule: {
-        accounts: [...accounts, accountData]
-      }
-    }
     dispatch(createAccounts(accountData))
-    // Temporary until I add a middleware to update localStorage after updating reducer and state
-    //saveItem(state)
     close('')
   }
 
