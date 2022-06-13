@@ -43,7 +43,7 @@ const Main = () => {
   }
   return (
     <>
-    <Container maxWidth="md" sc={{ bgcolor: '#f5f5f5' }}>
+    <Container maxWidth="md" sx={{ bgcolor: '#f5f5f5' }}>
       <Accounts>
         {
           (accountsState.length > 0) ? accountsState.map((account, index) => ( <Account key={index} account={account} launchModal={accountClickHandler} /> )) : <Typography>There are not accounts created.</Typography>
