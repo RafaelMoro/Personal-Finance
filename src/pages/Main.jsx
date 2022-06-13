@@ -37,7 +37,6 @@ const Main = () => {
   ]
 
   const accountClickHandler = (type, account = null) => {
-    console.log(type, account)
     setAccountModal({
       type: type,
       modal: !accountModal.modal,

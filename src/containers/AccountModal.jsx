@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import { Modal, Box, TextField, Button, Typography } from '@mui/material'
 
-import { createAccounts } from '../redux/slices/accounts.slice'
+import { createAccounts, modifyAccount } from '../redux/slices/accounts.slice'
 import { SelectInput } from '@components/SelectInput'
 
 const boxStyle = {
@@ -30,13 +30,27 @@ const AccountModal = ({ accountModal, close }) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
-    const accountData = {
-      name: formData.get('accountName'),
-      type: formData.get('type'),
-      initialAmount: Number(formData.get('initialAmount')),
-      color: formData.get('color')
+
+    if(accountModal.type === 'Create') {
+      const accountData = {
+        //create id until I connect it to a backend
+        id: Math.floor(Math.random() * 1000),
+        name: formData.get('accountName'),
+        type: formData.get('type'),
+        initialAmount: Number(formData.get('initialAmount')),
+        color: formData.get('color')
+      }
+      dispatch(createAccounts(accountData))
+    }else {
+      const accountData = {
+        id: account.id,
+        name: formData.get('accountName'),
+        type: formData.get('type'),
+        initialAmount: Number(formData.get('initialAmount')),
+        color: formData.get('color')
+      }
+      dispatch(modifyAccount(accountData))
     }
-    accountModal.type === 'Create' ? dispatch(createAccounts(accountData)) : console.log('edita')
     close('')
   }
 

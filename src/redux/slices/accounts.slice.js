@@ -11,9 +11,15 @@ export const accountsSlice = createSlice({
     // Redux Toolkit allows us to write "mutating" logic in reducers. It uses Immer library which detects changes to a draft state
     // and produces a brand new inmutable state based off those changes
     createAccounts: (state, action) => {
-      state.accounts = [ ...state.accounts, action.payload]
+      // In the middleware, the prop accounts was created and added to the action
+      state.accounts = action.accounts
+    },
+    modifyAccount: (state, action) => {
+      // From the middleware, modifiedAccounts was created and added to the action
+      state.accounts = action.modifiedAccounts
     },
     fetchAccounts: (state, action) => {
+      console.log(action)
       //Since the payload is already an array, it will be passed directly to accounts
       state.accounts =  action.payload
     }
@@ -21,6 +27,6 @@ export const accountsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { createAccounts, fetchAccounts } = accountsSlice.actions
+export const { createAccounts, modifyAccount, fetchAccounts } = accountsSlice.actions
 
 export default accountsSlice.reducer
