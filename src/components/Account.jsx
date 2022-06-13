@@ -19,7 +19,7 @@ const Account = ({ account, launchModal }) => {
         <Paper elevation={2} sx={{ p: 2 }}>
           <div className='card__title-buttons'>
             <Typography variant="h5" component="h4" >{account.name}</Typography>
-            <IconButton aria-label="edit" onClick={() => launchModal('Edit')}>
+            <IconButton aria-label="edit" onClick={() => launchModal('Edit', account)}>
               <EditIcon />
             </IconButton>
             <IconButton aria-label="delete">

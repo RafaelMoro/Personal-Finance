@@ -15,7 +15,8 @@ import { AccountModal } from '@containers/AccountModal'
 const Main = () => {
   const [ accountModal, setAccountModal ] = React.useState({
     type: '',
-    modal: false
+    modal: false,
+    account: null
   })
   const LOCAL_STORAGE = process.env.LOCAL_STORAGE
   useLocalStorage(LOCAL_STORAGE)
@@ -35,10 +36,12 @@ const Main = () => {
     }
   ]
 
-  const accountClickHandler = (type) => {
+  const accountClickHandler = (type, account = null) => {
+    console.log(type, account)
     setAccountModal({
       type: type,
-      modal: !accountModal.modal
+      modal: !accountModal.modal,
+      account: account
     })
   }
   return (
@@ -56,7 +59,7 @@ const Main = () => {
         renderRecords={(record, index) => ( <Record key={index} record={record} /> )}
       />
     </Container>
-    { accountModal.modal && <AccountModal accountModal={accountModal} close={accountClickHandler} saveItem={saveItem} /> }
+    { accountModal.modal && <AccountModal accountModal={accountModal} close={accountClickHandler} /> }
     </>
   )
 }
