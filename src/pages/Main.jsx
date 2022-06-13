@@ -44,19 +44,19 @@ const Main = () => {
   return (
     <>
     <Container maxWidth="md" sx={{ bgcolor: '#f5f5f5' }}>
-      <Accounts>
-        {
-          (accountsState.length > 0) ? accountsState.map((account, index) => ( <Account key={index} account={account} launchModal={accountClickHandler} /> )) : <Typography>There are not accounts created.</Typography>
-        }
+      <Accounts
+        accounts={accountsState}
+        noAccounts={() => <Typography>There are not accounts created.</Typography>}
+        renderAccounts={(account, index) => ( <Account key={index} account={account} launchModal={accountClickHandler} />)}
+      >
         <CreateAccountButton launchModal={accountClickHandler} />
       </Accounts>
-      <Records>
-        {
-          records.map((record, index) => ( <Record key={index} record={record} /> ))
-        }
-      </Records>
+      <Records
+        records={records}
+        renderRecords={(record, index) => ( <Record key={index} record={record} /> )}
+      />
     </Container>
-    { accountModal && <AccountModal accountModal={accountModal} close={accountClickHandler} saveItem={saveItem} /> }
+    { accountModal.modal && <AccountModal accountModal={accountModal} close={accountClickHandler} saveItem={saveItem} /> }
     </>
   )
 }
