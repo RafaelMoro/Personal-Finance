@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Modal, Box, TextField, Button, Typography, FormControl, InputLabel, Select, MenuItem } from '@mui/material'
+import { Modal, Box, TextField, Button, Typography } from '@mui/material'
 
 import { createAccounts } from '../redux/slices/accounts.slice'
 import { SelectInput } from '@components/SelectInput'
@@ -26,7 +26,6 @@ const COLOR_OPTIONS = ['Red', 'White', 'Blue', 'Black', 'Grey']
 const AccountModal = ({ accountModal, close, saveItem }) => {
   const dispatch = useDispatch()
   const accounts = useSelector(state => state.accountsModule.accounts)
-  console.log('re-rendering')
 
   const handleSubmit = (event) => {
     event.preventDefault()

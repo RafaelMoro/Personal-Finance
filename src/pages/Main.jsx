@@ -10,7 +10,7 @@ import { Record } from '@components/Record'
 import { useLocalStorage } from '@utils/useLocalStorage'
 
 import { CreateAccountButton } from '@components/CreateAccountButton'
-import { AccountModal } from '@components/AccountModal'
+import { AccountModal } from '@containers/AccountModal'
 
 const Main = () => {
   const [ accountModal, setAccountModal ] = React.useState({
