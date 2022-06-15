@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Paper, Typography, Grid, IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/DeleteOutlined'
-import EditIcon from '@mui/icons-material/EditOutlined';
+import EditIcon from '@mui/icons-material/EditOutlined'
 
-import { formatNumberToCurrency } from '../utils/formatNumberToCurrency'
+import { formatNumberToCurrency } from '@utils/formatNumberToCurrency'
+import { Confirmation } from '@components/Confirmation'
 import '@styles/components/accounts.scss'
 
 const Account = ({ account, launchModal }) => {
-  const [initialAmountFormated, setInitialAmountFormated] = React.useState(null)
+  const [initialAmountFormated, setInitialAmountFormated] = useState(null)
+  const [toggleModal, setToggleModal] = useState(false)
   
-  React.useEffect(() => {
+  const handleToggleModal = () => {
+    setToggleModal(!toggleModal)
+  }
+
+  useEffect(() => {
     setInitialAmountFormated(formatNumberToCurrency(account.initialAmount))
   }, [account.initialAmount])
   
@@ -22,7 +28,7 @@ const Account = ({ account, launchModal }) => {
             <IconButton aria-label="edit" onClick={() => launchModal('Edit', account)}>
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="delete">
+            <IconButton aria-label="delete" onClick={handleToggleModal}>
               <DeleteIcon sx={{ color: 'red' }} />
             </IconButton>
           </div>
@@ -32,6 +38,7 @@ const Account = ({ account, launchModal }) => {
           </div>
         </Paper>
       </Grid>
+      { toggleModal && <Confirmation open={toggleModal} close={handleToggleModal} component="account" action="Delete" /> }
     </>
   )
 }
