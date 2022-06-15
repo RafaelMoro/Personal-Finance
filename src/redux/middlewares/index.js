@@ -30,7 +30,6 @@ const saveLocalStorage = store => next => actionInfo => {
     const newActionInfo = { ...actionInfo, modifiedAccounts }
     next(newActionInfo)
   }else if(actionInfo.type === 'accounts/deleteAccount') {
-    console.log(actionInfo.payload)
     const state = store.getState()
     const modifiedAccounts = state.accountsModule.accounts.filter(account => account.id !== actionInfo.payload)
     const newState = {
