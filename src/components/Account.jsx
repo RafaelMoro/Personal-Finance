@@ -38,7 +38,7 @@ const Account = ({ account, launchModal }) => {
           </div>
         </Paper>
       </Grid>
-      { toggleModal && <Confirmation open={toggleModal} close={handleToggleModal} component="account" action="Delete" /> }
+      { toggleModal && <Confirmation open={toggleModal} close={handleToggleModal} accountId={account.id} component="account" action="Delete" /> }
     </>
   )
 }

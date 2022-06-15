@@ -18,8 +18,11 @@ export const accountsSlice = createSlice({
       // From the middleware, modifiedAccounts was created and added to the action
       state.accounts = action.modifiedAccounts
     },
+    deleteAccount: (state, action) => {
+      //delete account
+      state.accounts = action.modifiedAccounts
+    },
     fetchAccounts: (state, action) => {
-      console.log(action)
       //Since the payload is already an array, it will be passed directly to accounts
       state.accounts =  action.payload
     }
@@ -27,6 +30,6 @@ export const accountsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { createAccounts, modifyAccount, fetchAccounts } = accountsSlice.actions
+export const { createAccounts, modifyAccount, deleteAccount, fetchAccounts } = accountsSlice.actions
 
 export default accountsSlice.reducer
